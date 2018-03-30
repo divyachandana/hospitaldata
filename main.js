@@ -60,8 +60,8 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
       data.forEach(function(row){
           var eachRow = [];
           eachRow.push({text:row.name+'', alignment:'center'});
-          eachRow.push({text:row.name+'', alignment:'left'});
-          eachRow.push({text:row.name+'', alignment:'left'});
+          eachRow.push({text:row.abg+'', alignment:'left'});
+          eachRow.push({text:row.result+'', alignment:'left'});
           eachRow.push({text:row.vbg+'', alignment:'left'});
           body.push(eachRow);
       });
