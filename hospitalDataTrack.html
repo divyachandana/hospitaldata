@@ -1,6 +1,6 @@
-<table cellpadding="0" cellspacing="0" border="0">
+<table id="exportthis" cellpadding="0" cellspacing="0" border="0">
   <tr>
-    <th rowspan="1" style="text-align:left">Name :</th>
+    <th rowspan="1" style="text-align:left">ID NO :</th>
     <th style="text-align:left">Time of ABG</th>
     <th>
 
@@ -8,7 +8,7 @@
     <th style="text-align:right">&#9312;</th>
   </tr>
   <tr>
-    <th style="text-align:left">ID NO :</th>
+    <th></th>
     <th style="text-align:left">Time of VBG</th>
   </tr>
   <tr class="border_bottom">
@@ -35,6 +35,9 @@
   <td ng-click="deleteData($index)"><a href="" style="text-decoration:none">X</a></td>
 </tr>
 </table>
-<button name="addRow" class="button button-blue" style="float:right;margin-right:9%;margin-top:1%" ng-click="addNewRow()">Add Row</button>
+
+
+<button ng-click="export()" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%">Download</button>
+<button name="addRow" class="button button-blue" style="display: inline-block;float: right;margin-right:9%;margin-top:2%;margin-bottom:10%" ng-click="addNewRow()">Add Row</button>
 
 <!-- <button name="addRow" ng-click="saveData()">Save Data</button> -->
