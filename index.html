@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="hospitalApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+  <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+<!-- Firebase Initialization -->
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDlHS4GK41a3CJPLAijM8MO0Bb7CaOJnwI",
+    authDomain: "hospitalda-3ed08.firebaseapp.com",
+    databaseURL: "https://hospitalda-3ed08.firebaseio.com",
+    projectId: "hospitalda-3ed08",
+    storageBucket: "",
+    messagingSenderId: "842900486964"
+  };
+  firebase.initializeApp(config);
+</script>
+<!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div ng-view>
+
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
