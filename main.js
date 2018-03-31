@@ -59,11 +59,14 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
 
       data.forEach(function(row){
           var eachRow = [];
-          eachRow.push({text:row.name+'', alignment:'center'});
-          eachRow.push({text:row.abg+'', alignment:'left'});
-          eachRow.push({text:row.result+'', alignment:'left'});
-          eachRow.push({text:row.vbg+'', alignment:'left'});
-          body.push(eachRow);
+          if(row.name || row.abg!==0 ||row.vbg!==0 || row.result!==0){
+            eachRow.push({text:row.name+'', alignment:'center'});
+            eachRow.push({text:row.abg+'', alignment:'left'});
+            eachRow.push({text:row.result+'', alignment:'left'});
+            eachRow.push({text:row.vbg+'', alignment:'left'});
+            body.push(eachRow);
+
+          }
       });
 
       return body;
