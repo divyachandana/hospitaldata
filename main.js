@@ -50,31 +50,31 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
 
   $scope.export = function(){
      function buildTableBody(data){
-      var body = [
-          [{text:'ID NO :', bold: true, color:'#008CBA', fontSize:14},{text:'Time of ABG', bold: true,color:'#008CBA', fontSize:14},{text:''},{text:''}],
-           [{text:'', },{text:'Time of VBG', bold: true, color:'#008CBA', fontSize:14},{text:''},{text:''}],
-           [{text:'', },{text:'Date', bold: true, color:'#008CBA', fontSize:14},{text:''},{text:''}],
-           [{text:'Name', bold: true, color:'#008CBA', alignment:'center', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14},{text:'Result', bold: true, color:'#008CBA', fontSize:14},{text:'VBG', bold: true, color:'#008CBA', fontSize:14}],
-          ];
+       var body = [
+           [{text:'ID NO :', bold: true, color:'#008CBA', fontSize:14},{text:'Time of ABG', bold: true,color:'#008CBA', fontSize:14,colSpan:2},{text:''},{text:''}],
+            [{text:'', },{text:'Time of VBG', bold: true, color:'#008CBA', fontSize:14,colSpan:2},{text:''},{text:''}],
+            [{text:'', },{text:'Date', bold: true, color:'#008CBA', fontSize:14},{text:''},{text:''}],
+            [{text:'Component', bold: true, color:'#008CBA', alignment:'left', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'right'},{text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'right'},{text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'right'}],
+           ];
 
-      data.forEach(function(row){
-          var eachRow = [];
-          if(row.name || row.abg!==0 ||row.vbg!==0 || row.result!==0){
-            eachRow.push({text:row.name+'', alignment:'center'});
-            eachRow.push({text:row.abg+'', alignment:'left'});
-            eachRow.push({text:row.result+'', alignment:'left'});
-            eachRow.push({text:row.vbg+'', alignment:'left'});
-            body.push(eachRow);
+       data.forEach(function(row){
+         if(row.name || row.abg!=0 || row.result!=0|| row.vbg!=0){
+           var eachRow = [];
+           eachRow.push({text:row.name+'', alignment:'left'});
+           eachRow.push({text:row.abg+'', alignment:'right'});
+           eachRow.push({text:row.result+'', alignment:'right'});
+           eachRow.push({text:row.vbg+'', alignment:'right'});
+           body.push(eachRow);
 
-          }
-      });
+         }
+       });
 
       return body;
   }
    var docDefinition = {
          header: function(currentPage, pageCount, pageSize) {
        // you can apply any logic and return any valid pdfmake element
-       console.log(currentPage);
+       // console.log(currentPage);
        return {
            margin:[10,20,20,10],
                columns: [
@@ -91,13 +91,13 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
            {
                table: {
                    headerRows: 4,
-                   widths: [ 150, 110, 110, 110 ],
+                    widths: [ 75, 40, 90, 90 ],
                    body: buildTableBody($scope.data)
 
                },
        		layout: {
        				hLineWidth: function (i, node) {
-       					return (i === 0 || i === node.table.body.length || i===3 || i===33) ? 1 : 0;
+       					return (i === 0 || i === node.table.body.length || i===3 || i===4 || i===33) ? 1 : 0;
        				},
        				vLineWidth: function (i, node) {
        					return (i === 0 || i === node.table.widths.length) ? 1 : 0;

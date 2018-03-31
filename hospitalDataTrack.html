@@ -19,13 +19,13 @@
     <th></th>
 
   </tr>
-  <tr>
+  <tr class="border_bottom">
 
-      <th>Name</th>
+      <th>Component</th>
       <th>ABG</th>
-      <th style="width:20%">Result</th>
+      <th style="width:20%">Difference</th>
       <th>VBG</th>
-
+      <th></th>
 </tr>
 <tr ng-repeat="d in data track by $index">
   <td><input name="name" ng-model="d.name" type="text" style="padding:3%" ng-blur="calculateDiff($index)" /></td>
