@@ -97,7 +97,7 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
                },
        		layout: {
        				hLineWidth: function (i, node) {
-       					return (i === 0 || i === node.table.body.length || i===3 || i===4 || i===33) ? 1 : 0;
+       					return (i === 0 || i === node.table.body.length || i===3 || i===4 || i===28) ? 1 : 0;
        				},
        				vLineWidth: function (i, node) {
        					return (i === 0 || i === node.table.widths.length) ? 1 : 0;
@@ -108,10 +108,10 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
        				vLineColor: function (i, node) {
        					return (i === 0 || i === node.table.widths.length) ? '#008CBA' : '#008CBA';
        				},
-       				// paddingLeft: function(i, node) { return 4; },
-       				// paddingRight: function(i, node) { return 4; },
+       				paddingLeft: function(i, node) { return 10; },
+       				paddingRight: function(i, node) { return 10; },
        				paddingTop: function(i, node) { return 6; },
-       				// paddingBottom: function(i, node) { return 2; },
+       				paddingBottom: function(i, node) { return 6; },
        				// fillColor: function (i, node) { return null; }
        			},
        // 		pageBreak: 'after'
