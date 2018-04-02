@@ -48,12 +48,29 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
     $scope.data.$remove(item);
   };
 
+  // $scope.clear = function(){
+  //
+  // }
+
   $scope.export = function(){
+
+    var date = '';
+    var patientid = $scope.patientID ? $scope.patientID : '';
+    var timeABG = $scope.timeABG ? $scope.timeABG : '';
+    var timeVBG = $scope.timeVBG ? $scope.timeVBG : '';
+    var page = $scope.page ? $scope.page : '';
+    if($scope.date){
+      var day = $scope.date.getDate();
+      var month = $scope.date.getMonth();
+      var year = $scope.date.getFullYear();
+      date = day +'/'+month+'/'+year;
+    }
+
      function buildTableBody(data){
        var body = [
-           [{text:'ID NO :', bold: true, color:'#008CBA', fontSize:14},{text:'Time of ABG', bold: true,color:'#008CBA', fontSize:14,colSpan:2},{text:''},{text:''}],
-            [{text:'', },{text:'Time of VBG', bold: true, color:'#008CBA', fontSize:14,colSpan:2},{text:''},{text:''}],
-            [{text:'', },{text:'Date', bold: true, color:'#008CBA', fontSize:14},{text:''},{text:''}],
+           [{text:'ID NO : '+patientid, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{text:'Time of ABG: '+timeABG, bold: true,color:'#008CBA', fontSize:12},{text:page+'',color:'#008CBA', alignment:'right'}],
+            [{text:'', },{text:''},{text:'Time of VBG: '+timeVBG, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''}],
+            [{text:'', },{text:''},{text:'Date : '+date, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{}],
             [{text:'Component', bold: true, color:'#008CBA', alignment:'left', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'right'},{text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'right'},{text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'right'}],
            ];
 
@@ -72,48 +89,53 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
       return body;
   }
    var docDefinition = {
-         header: function(currentPage, pageCount, pageSize) {
-       // you can apply any logic and return any valid pdfmake element
-       // console.log(currentPage);
-       return {
-           margin:[10,20,20,10],
-               columns: [
-               {
-                   fontSize: 14,
-                   text: currentPage.toString(),
-                    alignment:'right',
-                    color:'#008CBA',
-               }
-       ]}
-     },
+     //     header: function(currentPage, pageCount, pageSize) {
+     //   // you can apply any logic and return any valid pdfmake element
+     //   // console.log(currentPage);
+     //   return {
+     //       margin:[10,20,20,10],
+     //           columns: [
+     //           {
+     //               fontSize: 14,
+     //               text: currentPage.toString(),
+     //                alignment:'right',
+     //                color:'#008CBA',
+     //           }
+     //   ]}
+     // },
 
        content:[
            {
+             margin:[80,20,10,10],
+             columns :[{
+
                table: {
-                   headerRows: 4,
-                    widths: [ 75, 40, 90, 90 ],
-                   body: buildTableBody($scope.data)
+                 headerRows: 4,
+                 widths: [ 75, 40, 130, 110 ],
+                 body: buildTableBody($scope.data)
 
                },
-       		layout: {
-       				hLineWidth: function (i, node) {
-       					return (i === 0 || i === node.table.body.length || i===3 || i===4 || i===28) ? 1 : 0;
-       				},
-       				vLineWidth: function (i, node) {
-       					return (i === 0 || i === node.table.widths.length) ? 1 : 0;
-       				},
-       				hLineColor: function (i, node) {
-       					return (i === 0 || i === node.table.body.length) ? '#008CBA' : '#008CBA';
-       				},
-       				vLineColor: function (i, node) {
-       					return (i === 0 || i === node.table.widths.length) ? '#008CBA' : '#008CBA';
-       				},
-       				paddingLeft: function(i, node) { return 10; },
-       				paddingRight: function(i, node) { return 10; },
-       				paddingTop: function(i, node) { return 6; },
-       				paddingBottom: function(i, node) { return 6; },
-       				// fillColor: function (i, node) { return null; }
-       			},
+               layout: {
+                 hLineWidth: function (i, node) {
+                   return (i === 0 || i === node.table.body.length || i===3 || i===4 || i===27) ? 1 : 0;
+                 },
+                 vLineWidth: function (i, node) {
+                   return (i === 0 || i === node.table.widths.length) ? 1 : 0;
+                 },
+                 hLineColor: function (i, node) {
+                   return (i === 0 || i === node.table.body.length) ? '#008CBA' : '#008CBA';
+                 },
+                 vLineColor: function (i, node) {
+                   return (i === 0 || i === node.table.widths.length) ? '#008CBA' : '#008CBA';
+                 },
+                 paddingLeft: function(i, node) { return 10; },
+                 paddingRight: function(i, node) { return 10; },
+                 paddingTop: function(i, node) { return 6; },
+                 paddingBottom: function(i, node) { return 6; },
+                 // fillColor: function (i, node) { return null; }
+               },
+
+             }]
        // 		pageBreak: 'after'
            }
            ]

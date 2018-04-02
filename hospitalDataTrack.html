@@ -1,20 +1,20 @@
 <table id="exportthis" cellpadding="0" cellspacing="0" border="0">
   <tr>
-    <th rowspan="1" style="text-align:left">ID NO :</th>
-    <th style="text-align:left">Time of ABG</th>
-    <th>
+    <th rowspan="1" style="text-align:left"><label>ID NO : </label><input type="text" style="width:110px;"ng-model="patientID"/></th>
+    <th colspan="2" style="text-align:right"><label>Time of ABG : </label><input type="text" ng-model="timeABG"/></th>
+    <!-- <th>
 
-    </th>
-    <th style="text-align:right">&#9312;</th>
+    </th> -->
+    <!-- <th style="text-align:right">&#9312;</th> -->
+    <th style="text-align:right"><input type="text" placeholder="page" style="width:50px;" ng-model="page"/></th>
   </tr>
   <tr>
     <th></th>
-    <th style="text-align:left">Time of VBG</th>
+    <th colspan="2" style="text-align:right;"><label>Time of VBG : </label><input type="text" ng-model="timeVBG"/></th>
   </tr>
   <tr class="border_bottom">
     <th></th>
-    <th style="text-align:left">Date :</th>
-    <th></th>
+    <th colspan="2" style="text-align:right"><label>Date : </label><input type="date" ng-model="date"/></th>
     <th></th>
     <th></th>
 
@@ -38,6 +38,7 @@
 
 
 <button ng-click="export()" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%">Download</button>
-<button name="addRow" class="button button-blue" style="display: inline-block;float: right;margin-right:9%;margin-top:2%;margin-bottom:10%" ng-click="addNewRow()">Add Row</button>
+<!-- <button ng-click="clear()" class="button button-grey" style="display:inline-block;margin-top:2%;margin-bottom:10%">Clear</button> -->
+<button name="addRow" class="button button-blue" style="display: inline-block;float: right;margin-right:2%;margin-top:2%;margin-bottom:10%" ng-click="addNewRow()">Add Row</button>
 
 <!-- <button name="addRow" ng-click="saveData()">Save Data</button> -->
