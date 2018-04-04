@@ -71,16 +71,16 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
            [{text:'ID NO : '+patientid, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{text:'Time of ABG: '+timeABG, bold: true,color:'#008CBA', fontSize:12},{text:page+'',color:'#008CBA', alignment:'right'}],
             [{text:'', },{text:''},{text:'Time of VBG: '+timeVBG, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''}],
             [{text:'', },{text:''},{text:'Date : '+date, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{}],
-            [{text:'Component', bold: true, color:'#008CBA', alignment:'left', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'right'},{text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'right'},{text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'right'}],
+            [{text:'Component', bold: true, color:'#008CBA', alignment:'center', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},{text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},{text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'}],
            ];
 
        data.forEach(function(row){
          if(row.name || row.abg!=0 || row.result!=0|| row.vbg!=0){
            var eachRow = [];
-           eachRow.push({text:row.name+'', alignment:'left'});
-           eachRow.push({text:row.abg+'', alignment:'right'});
-           eachRow.push({text:row.result+'', alignment:'right'});
-           eachRow.push({text:row.vbg+'', alignment:'right'});
+           eachRow.push({text:row.name+'', alignment:'center'});
+           eachRow.push({text:row.abg+'', alignment:'center'});
+           eachRow.push({text:row.result+'', alignment:'center'});
+           eachRow.push({text:row.vbg+'', alignment:'center'});
            body.push(eachRow);
 
          }
@@ -106,12 +106,12 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
 
        content:[
            {
-             margin:[80,20,10,10],
+             margin:[110,20,10,10],
              columns :[{
 
                table: {
                  headerRows: 4,
-                 widths: [ 75, 40, 130, 110 ],
+                 widths: [ 85, 50, 130, 50 ],
                  body: buildTableBody($scope.data)
 
                },

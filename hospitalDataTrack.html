@@ -1,7 +1,7 @@
 <table id="exportthis" cellpadding="0" cellspacing="0" border="0">
   <tr>
-    <th rowspan="1" style="text-align:left"><label>ID NO : </label><input type="text" style="width:91px;"ng-model="patientID"/></th>
-    <th colspan="2" style="text-align:right"><label>Time of ABG : </label><input type="text" ng-model="timeABG"/></th>
+    <th rowspan="1" style="text-align:left"><label>ID NO : </label><input type="text" style="width:91px;" ng-model="patientID"/></th>
+    <th colspan="2"><label>Time of ABG : </label><input type="text" ng-model="timeABG" style="width:100px;"/></th>
     <!-- <th>
 
     </th> -->
@@ -10,29 +10,30 @@
   </tr>
   <tr>
     <th></th>
-    <th colspan="2" style="text-align:right;"><label>Time of VBG : </label><input type="text" ng-model="timeVBG"/></th>
+    <th colspan="2"><label>Time of VBG : </label><input type="text" ng-model="timeVBG" style="width:100px;"/></th>
   </tr>
   <tr class="border_bottom">
     <th></th>
-    <th colspan="2" style="text-align:right"><label>Date : </label><input type="date" ng-model="date"/></th>
+    <th colspan="3"><label>Date of Collection: </label><input type="date" ng-model="date" style="width:135px;"/></th>
     <th></th>
     <th></th>
 
   </tr>
   <tr class="border_bottom">
 
-      <th>Component</th>
-      <th>ABG</th>
-      <th>Difference</th>
-      <th>VBG</th>
+      <th style="text-align:center">Component</th>
+      <th style="text-align:center">ABG</th>
+      <th style="text-align:center">Difference</th>
+      <th style="text-align:center">VBG</th>
+      <th></th>
       <th></th>
 </tr>
 <tr ng-repeat="d in data track by $index">
-  <td><input name="name" ng-model="d.name" type="text" style="padding:3%;width:120px;" ng-blur="calculateDiff($index)" /></td>
-  <td><input name="abg" ng-model="d.abg" type="number" step="0.01" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;"/></td>
-  <td><input name="difference" ng-model="d.result" style="padding:3%;width:120px;"/></td>
+  <td><input name="name" ng-model="d.name" type="text" style="padding:3%;width:120px;text-align:center;" ng-blur="calculateDiff($index)" /></td>
+  <td><input name="abg" ng-model="d.abg" type="number" step="0.01" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;text-align:center;"/></td>
+  <td><input name="difference" ng-model="d.result" style="padding:3%;width:120px;text-align:center;"/></td>
   <!-- <td style="text-align: center !important;">{{d.result}}</td> -->
-  <td><input name="vbg" ng-model="d.vbg" type="number" step="0.01" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;"/></td>
+  <td><input name="vbg" ng-model="d.vbg" type="number" step="0.01" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;text-align:center;"/></td>
   <td ng-click="deleteData($index)"><a href="" style="text-decoration:none">X</a></td>
 </tr>
 </table>
