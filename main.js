@@ -70,7 +70,7 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
        var body = [
            [{text:'ID NO : '+patientid, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{text:'Time of ABG: '+timeABG, bold: true,color:'#008CBA', fontSize:12},{text:page+'',color:'#008CBA', alignment:'right'}],
             [{text:'', },{text:''},{text:'Time of VBG: '+timeVBG, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''}],
-            [{text:'', },{text:''},{text:'Date : '+date, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{}],
+            [{text:'', },{text:''},{text:'Date of Collection : '+date, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{}],
             [{text:'Component', bold: true, color:'#008CBA', alignment:'center', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},{text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},{text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'}],
            ];
 
