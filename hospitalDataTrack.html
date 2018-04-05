@@ -1,3 +1,7 @@
+<div class="sidenav">
+  <a ng-click="pageClick($index)" ng-repeat="p in allData track by $index">Page {{$index+1}}</a>
+</div>
+
 <table id="exportthis" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <th rowspan="1" style="text-align:left"><label>ID NO : </label><input type="text" style="width:91px;" ng-model="patientID"/></th>
@@ -14,8 +18,9 @@
   </tr>
   <tr class="border_bottom">
     <th></th>
-    <th colspan="3"><label>Date of Collection : </label><input type="date" ng-model="date" style="width:135px;"/></th>
-    <th></th>
+    <th colspan="3"><label>Date of Collection : </label><input type="text" ng-model="date" style="width:100px;"/></th>
+    <!-- <th colspan="3"><label>Date of Collection : </label><input type="date" ng-model="date" style="width:135px;"/></th> -->
+    <!-- <th></th> -->
     <th></th>
 
   </tr>
@@ -25,7 +30,7 @@
       <th style="text-align:center">ABG</th>
       <th style="text-align:center">Difference</th>
       <th style="text-align:center">VBG</th>
-      <th></th>
+      <!-- <th></th> -->
       <th></th>
 </tr>
 <tr ng-repeat="d in data track by $index">
@@ -34,13 +39,12 @@
   <td><input name="difference" ng-model="d.result" style="padding:3%;width:120px;text-align:center;"/></td>
   <!-- <td style="text-align: center !important;">{{d.result}}</td> -->
   <td><input name="vbg" ng-model="d.vbg" type="number" step="0.01" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;text-align:center;"/></td>
-  <td ng-click="deleteData($index)"><a href="" style="text-decoration:none">X</a></td>
+  <td ng-click="deleteData($index)" style="margin-left:1% !important"><a href="" style="text-decoration:none">X</a></td>
 </tr>
 </table>
 
 
-<button ng-click="export()" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%">Download</button>
+<button ng-click="export()" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%">Download All</button>
 <!-- <button ng-click="clear()" class="button button-grey" style="display:inline-block;margin-top:2%;margin-bottom:10%">Clear</button> -->
+<button name="addRow" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%" ng-click="saveStaticData()">Save Data</button>
 <button name="addRow" class="button button-blue" style="display: inline-block;float: right;margin-right:8%;margin-top:2%;margin-bottom:10%" ng-click="addNewRow()">Add Row</button>
-
-<!-- <button name="addRow" ng-click="saveData()">Save Data</button> -->
