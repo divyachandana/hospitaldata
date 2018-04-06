@@ -4,7 +4,8 @@
 
 <table id="exportthis" cellpadding="0" cellspacing="0" border="0">
   <tr>
-    <th rowspan="1" style="text-align:left"><label>ID NO : </label><input type="text" style="width:91px;" ng-model="patientID"/></th>
+    <th colspan="2" style="text-align:left"><label>ID NO : </label><input type="text" style="width:91px;" ng-model="patientID"/></th>
+    <!-- <th></th> -->
     <th colspan="2"><label>Time of ABG : </label><input type="text" ng-model="timeABG" style="width:100px;"/></th>
     <!-- <th>
 
@@ -14,9 +15,11 @@
   </tr>
   <tr>
     <th></th>
+    <th></th>
     <th colspan="2"><label>Time of VBG : </label><input type="text" ng-model="timeVBG" style="width:100px;"/></th>
   </tr>
   <tr class="border_bottom">
+    <th></th>
     <th></th>
     <th colspan="3"><label>Date of Collection : </label><input type="text" ng-model="date" style="width:100px;"/></th>
     <!-- <th colspan="3"><label>Date of Collection : </label><input type="date" ng-model="date" style="width:135px;"/></th> -->
@@ -30,8 +33,8 @@
       <th style="text-align:center">ABG</th>
       <th style="text-align:center">Difference</th>
       <th style="text-align:center">VBG</th>
+      <th style="text-align:center">aVBG</th>
       <!-- <th></th> -->
-      <th></th>
 </tr>
 <tr ng-repeat="d in data track by $index">
   <td><input name="name" ng-model="d.name" type="text" style="padding:3%;width:120px;text-align:center;" ng-blur="calculateDiff($index)" /></td>
@@ -39,12 +42,13 @@
   <td><input name="difference" ng-model="d.result" style="padding:3%;width:120px;text-align:center;"/></td>
   <!-- <td style="text-align: center !important;">{{d.result}}</td> -->
   <td><input name="vbg" ng-model="d.vbg" type="number" step="0.01" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;text-align:center;"/></td>
+  <td><input name="avbg" ng-model="d.avbg" ng-blur="calculateDiff($index)" style="padding:3%;width:120px;text-align:center;"/></td>
   <td ng-click="deleteData($index)" style="margin-left:1% !important"><a href="" style="text-decoration:none">X</a></td>
 </tr>
 </table>
 
 
 <button ng-click="export()" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%">Download All</button>
-<!-- <button ng-click="clear()" class="button button-grey" style="display:inline-block;margin-top:2%;margin-bottom:10%">Clear</button> -->
-<button name="addRow" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%" ng-click="saveStaticData()">Save Data</button>
-<button name="addRow" class="button button-blue" style="display: inline-block;float: right;margin-right:8%;margin-top:2%;margin-bottom:10%" ng-click="addNewRow()">Add Row</button>
+<button ng-click="formBlankPage()" class="button button-grey" style="display:inline-block;margin-top:2%;margin-bottom:10%">New Page</button>
+<button name="saveData" class="button button-green" style="display:inline-block;margin-top:2%;margin-bottom:10%" ng-click="saveStaticData()">Save Data</button>
+<button name="addRow" class="button button-blue" style="display: inline-block;float: right;margin-top:2%;margin-bottom:10%" ng-click="addNewRow()">Add Row</button>

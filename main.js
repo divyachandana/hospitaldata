@@ -13,12 +13,12 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
       $scope.data = [];
       // $scope.clickedPage;
       $scope.staticData = ["pH","pCO2","pO2","cHCO3","BE(ecf)","cSO2","AGap","GLu","Lac","Crea"];
-      formBlankPage();
+      $scope.formBlankPage();
       $scope.getAllData();
       // getData();
   }
 
-  function formBlankPage(){
+  $scope.formBlankPage = function(){
     $scope.patientID = '';
     $scope.timeABG = '';
     $scope.timeVBG = '';
@@ -32,7 +32,8 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
         'name':$scope.staticData[i],
         'abg':0,
         'result':0,
-        'vbg':0
+        'vbg':0,
+        'avbg' :0,
       };
       $scope.data.push(eachData);
     }
@@ -71,7 +72,7 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
       });
     }
 
-    formBlankPage();
+    $scope.formBlankPage();
   };
 
   $scope.pageClick = function(index){
@@ -98,7 +99,8 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
       'name':'',
       'abg':0,
       'result':0,
-      'vbg':0
+      'vbg':0,
+      'avbg' :0,
     };
 
     // $scope.data.$add(newRow);
@@ -111,12 +113,25 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
     var vbg = data.vbg;
     var diff = abg - vbg;
 
-    //$scope.data[index].name= data.name;
-    //$scope.data[index].abg= abg;
-    //$scope.data[index].vbg= vbg;
     $scope.data[index].result= parseFloat(diff).toFixed(2);
+
+    if(data.name.toUpperCase() === 'PH'){
+      if(data.vbg!='' && data.vbg!=null){$scope.data[index].avbg = parseFloat(data.vbg + 0.05).toFixed(2);  }
+    }else if(data.name.toUpperCase() === 'PCO2'){
+      if(data.vbg!='' && data.vbg!=null){$scope.data[index].avbg = parseFloat(data.vbg -5).toFixed(2);  }
+    }
     // $scope.data.$save(index);
   };
+
+  // $scope.calculateFormula = function(index){
+  //   var data = $scope.data[index];
+  //   if(data.name.toUpperCase() === 'PH'){
+  //     if(data.vbg!='' && data.vbg!=null){$scope.data[index].avbg = parseFloat(data.vbg + 0.05).toFixed(2);  }
+  //   }else if(data.name.toUpperCase() === 'PCO2'){
+  //     if(data.vbg!='' && data.vbg!=null){$scope.data[index].avbg = parseFloat(data.vbg -5).toFixed(2);  }
+  //
+  //   }
+  // }
 
   $scope.deleteData = function(index){
     // var item = $scope.data[index];
@@ -220,20 +235,34 @@ hospitalApp.controller('hospitalDataTrackController', function($scope, $firebase
    // };
 
    function multipleTableBody(data){
+     //console.log(data);
            var body = [
-           [{text:'ID NO : '+data.patientID, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{text:'Time of ABG: '+data.timeABG, bold: true,color:'#008CBA', fontSize:12},{text:data.page+'',color:'#008CBA', alignment:'right'}],
-            [{text:'', },{text:''},{text:'Time of VBG: '+data.timeVBG, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''}],
-            [{text:'', },{text:''},{text:'Date of Collection : '+data.doc, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{}],
-            [{text:'Component', bold: true, color:'#008CBA', alignment:'center', fontSize:14},{text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},{text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},{text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'}],
+           // [{text:'ID NO : '+data.patientID, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{text:'Time of ABG: '+data.timeABG, bold: true,color:'#008CBA', fontSize:12},{text:data.page+'',color:'#008CBA', alignment:'right'}],
+           //  [{text:'', },{text:''},{text:'Time of VBG: '+data.timeVBG, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''}],
+            // [{text:'', },{text:''},{text:'Date of Collection : '+data.doc, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{}],
+            // [{text:'ID NO : '+data.patientID, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{text:'Time of ABG: '+data.timeABG, bold: true,color:'#008CBA', fontSize:12},{},{text:data.page+'',color:'#008CBA', alignment:'right'}],
+            // [{text:'', },{text:''},{text:'Time of VBG: '+data.timeVBG, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''},{}],
+            // [{text:'', },{text:''},{text:'Date of Collection : '+data.doc, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{},{}],
+            [{text:'ID NO : '+data.patientID, bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''},{text:'Time of ABG: '+data.timeABG, bold: true,color:'#008CBA', fontSize:12},{text:''},{text:''+data.page, bold: true,color:'#008CBA', fontSize:12,alignment:'right'},],
+            [{text:''},{text:''},{text:'Time of VBG: '+data.timeVBG,bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''},{text:''},],
+            [{text:''},{text:''},{text:'Date of Collection :'+data.doc,bold: true, color:'#008CBA', fontSize:12,colSpan:2},{text:''},{text:''},],
+            [{text:'Component', bold: true, color:'#008CBA', alignment:'center', fontSize:14},
+            {text:'ABG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},
+            {text:'Difference', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},
+            {text:'VBG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},
+            {text:'aVBG', bold: true, color:'#008CBA', fontSize:14, alignment:'center'},
+          ],
            ];
     var comp = data.components;
        comp.forEach(function(row){
          if(row.name || row.abg!=0 || row.result!=0|| row.vbg!=0){
            var eachRow = [];
+           var avbg = row.avbg!=undefined || row.avbg!=null ? row.avbg:'';
            eachRow.push({text:row.name+'', alignment:'center'});
            eachRow.push({text:row.abg+'', alignment:'center'});
            eachRow.push({text:row.result+'', alignment:'center'});
            eachRow.push({text:row.vbg+'', alignment:'center'});
+           eachRow.push({text:avbg+'', alignment:'center'});
            body.push(eachRow);
 
          }
@@ -247,12 +276,12 @@ function multipleTables(){
     for(var i=0; i<$scope.allData.length;i++){
         main.push(
                     {
-                margin:[110,20,10,10],
+                margin:[70,20,10,10],
             columns:[{
                           table: {
 
-                headerRows: 4,
-                widths: [ 85, 50, 130, 50 ],
+                headerRows: 8,
+                widths: [ 85, 50, 130, 50, 50 ],
                 body: multipleTableBody($scope.allData[i]),
 
 
